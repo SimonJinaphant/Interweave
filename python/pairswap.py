@@ -5,20 +5,16 @@ def pair_swap(a):
     :return: Binary of the form A_n-1, A_n, ... A2, A3, A0, A1
     """
     swapped = 0
-
+    index = 0
     while a > 0:
-        print bin(swapped)
+
         if (a & 0b11 == 1) or (a & 0b11 == 2):
-            swapped |= ((a & 0b11) ^ 0b11)
+            swapped |= (((a & 0b11) ^ 0b11) << index)
         else:
-            swapped |= (a & 0b11)
-        print bin(a & 0b11), "-"
-        print bin(swapped)
+            swapped |= ((a & 0b11) << index)
 
-        swapped <<= 2
+        index += 2
         a >>= 2
-
-        print bin(swapped)
 
     return swapped
 
