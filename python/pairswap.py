@@ -1,3 +1,5 @@
+import unittest
+
 def pair_swap(a):
     """
     Swap odd-even pairs of adjacent bits
@@ -6,6 +8,7 @@ def pair_swap(a):
     """
     swapped = 0
     index = 0
+
     while a > 0:
 
         if (a & 0b11 == 1) or (a & 0b11 == 2):
@@ -18,4 +21,14 @@ def pair_swap(a):
 
     return swapped
 
-print bin(pair_swap(0b001101))
+
+class TestPairSwap(unittest.TestCase):
+
+    def test_normal(self):
+        self.assertEqual(pair_swap(0b1101), 0b1110)
+        self.assertEqual(pair_swap(0b0), 0b0)
+        self.assertEqual(pair_swap(0b1000), 0b0100)
+        self.assertEqual(pair_swap(0b1000 - 1), 0b1011)
+
+if __name__ == "__main__":
+    unittest.main()
