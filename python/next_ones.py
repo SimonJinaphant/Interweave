@@ -1,6 +1,14 @@
 import unittest
 
+
 def next_ones(bin):
+    """Determine the next smallest and next largest binary number
+     which has same number of 1s in their binary
+
+    :param bin: A positive (unsigned) binary
+    :return: A tuple (a,b) where a is the next largest binary number
+            and b is the next smallest binary number
+    """
     i = 0
     msb = 0
     ones_count = 0
@@ -16,7 +24,12 @@ def next_ones(bin):
         bin >>= 1
 
     lower_ones = (1 << ones_count) - 1
-    upper_ones = ((1 << msb+1) - 1) & ~((1 << msb - ones_count + 1) - 1)
+
+    '''
+    Generate an equivalent 1s binary of the same length as the input binary
+    and transform the remaining LSB to 0s.
+    '''
+    upper_ones = ((1 << msb + 1) - 1) & ~((1 << (msb - ones_count + 1)) - 1)
 
     return upper_ones, lower_ones
 
