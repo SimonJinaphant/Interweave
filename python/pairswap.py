@@ -1,10 +1,11 @@
 import unittest
 
+
 def pair_swap(a):
-    """
-    Swap odd-even pairs of adjacent bits
-    :param a: The binary input in the form A_n, ...A3, A2 A1, A0
-    :return: Binary of the form A_n-1, A_n, ... A2, A3, A0, A1
+    """Swap odd-even pairs of adjacent bits in a given binary
+
+    :param a: The binary input whose digits are in the form An An-1 ... A3 A2 A1 A0
+    :return: Binary of the form An-1, An ... A2 A3 A0 A1
     """
     swapped = 0
     index = 0
@@ -12,8 +13,10 @@ def pair_swap(a):
     while a > 0:
 
         if (a & 0b11 == 1) or (a & 0b11 == 2):
+            #Flip the bits
             swapped |= (((a & 0b11) ^ 0b11) << index)
         else:
+            #Don't flip the bits as it's redundant
             swapped |= ((a & 0b11) << index)
 
         index += 2
