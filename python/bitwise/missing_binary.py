@@ -3,6 +3,12 @@ def get_bit(binary, bit_index):
 
 
 def missing_binary(bin_sequence):
+    """Given an ordered list of binary numbers whose values range from 0 to N, there is
+    an element that is missing, find that value within linear time by
+
+    :param bin_sequence: An ordered sequence of integers from 0 to N with one missing number
+    :return: The missing number of the sequence
+    """
     return _missing_binary(bin_sequence, 0)
 
 
@@ -22,6 +28,6 @@ def _missing_binary(bin_sequence, current_index):
     if len(lsb_of_zeros) <= len(lsb_of_ones):
         return (_missing_binary(lsb_of_zeros, current_index+1) << 1) | 0
     else:
-        #There's more 0 bits, indicating that the missing binary is odd
-        #so we'll search all odd binaries
+        #There's more 0 bits, indicating that the missing binary has LSB of 1
+        #so we'll continue the search with all binaries with LSB of 1
         return (_missing_binary(lsb_of_ones, current_index+1) << 1) | 1
