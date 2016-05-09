@@ -12,10 +12,10 @@ def get_bit(binary, bit_index):
 
 
 def missing_binary(bin_sequence):
-    """Given an ordered list of binary numbers whose values range from 0 to N (inclusive), there is
+    """Given an list of unique binary numbers whose values range from 0 to N (inclusive), there is
     an element that is missing, find that value within linear time.
 
-    :param bin_sequence: An ordered sequence of integers from 0 to N (inclusive) with one missing number
+    :param bin_sequence: An list of unique integers from 0 to N (inclusive) with one missing number
     :return: The missing number n of the sequence. 0 <= n < N
     """
     return _missing_binary(bin_sequence, 0)
@@ -47,6 +47,8 @@ class TestMissingBinary(unittest.TestCase):
     def test_normal(self):
         self.assertEqual(missing_binary([0, 1, 2, 4]), 0b11)
         self.assertEqual(missing_binary([1, 2, 3]), 0)
+        self.assertEqual(missing_binary([0, 3, 2, 4]), 0b1)
+        self.assertEqual(missing_binary([0, 0, 1, 2, 4]), 0b11)
 
 
 if __name__ == "__main__":
