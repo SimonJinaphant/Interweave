@@ -22,7 +22,7 @@ def missing_binary(bin_sequence):
 
 
 def _missing_binary(bin_sequence, current_index):
-    
+
     #Basecase: Reached maximum amount of bit possible
     if current_index >= 32:
         return 0
@@ -52,6 +52,10 @@ class TestMissingBinary(unittest.TestCase):
         self.assertEqual(missing_binary([0, 3, 2, 4]), 0b1)
         self.assertEqual(missing_binary([0, 0, 1, 2, 4]), 0b11)
 
+    @unittest.expectedFailure
+    def test_fail(self):
+        self.assertEqual(missing_binary([0,1,3,4], 0b1))
+        self.assertEqual(missing_binary([0,1,2,3]), 0b100)
 
 if __name__ == "__main__":
     unittest.main()
