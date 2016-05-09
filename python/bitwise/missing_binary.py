@@ -1,4 +1,10 @@
 def get_bit(binary, bit_index):
+    """Retrieve the bit at the specified index of a given binary number
+
+    :param binary: The binary number,
+    :param bit_index: The index to look at; 0 <= index < binary.length
+    :return: The specific bit, 0 or 1, corresponding to the bit_index of binary
+    """
     return (binary & (1 << bit_index)) >> bit_index
 
 
