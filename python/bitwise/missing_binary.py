@@ -12,7 +12,7 @@ def get_bit(binary, bit_index):
 
 
 def missing_binary(bin_sequence):
-    """Given an list of unique binary numbers whose values range from 0 to N (inclusive), there is
+    """Given an list of unique 32 bit binary numbers whose values range from 0 to N (inclusive), there is
     an element that is missing, find that value within linear time.
 
     :param bin_sequence: An list of unique integers from 0 to N (inclusive) with one missing number
@@ -22,6 +22,8 @@ def missing_binary(bin_sequence):
 
 
 def _missing_binary(bin_sequence, current_index):
+    
+    #Basecase: Reached maximum amount of bit possible
     if current_index >= 32:
         return 0
 
