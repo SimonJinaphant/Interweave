@@ -30,6 +30,9 @@ class TestMagicIndex(unittest.TestCase):
         self.assertEqual(magic_index([-40, -20, -1, 1, 2, 3, 5, 6, 7, 9, 12, 13]), 9)
         self.assertEqual(magic_index([-40, -20, 1, 3, 5, 6, 7, 9, 13]), 3)
 
+    def test_none(self):
+        self.assertEqual(magic_index([1, 2, 3]), None)
+        self.assertEqual(magic_index([1]), None)
 
 if __name__ == "__main__":
     unittest.main()
