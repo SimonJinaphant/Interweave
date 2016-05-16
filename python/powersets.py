@@ -30,10 +30,16 @@ def powersets(elements, current=0):
 
 class TestPowerSets(unittest.TestCase):
 
+    """
+    Due to python's set being unhashable, nested sets are not possible
+    A list is used instead, so order will matter in testcases.
+    """
+
     def test_normals(self):
         self.assertEqual(powersets([]), [[]])
         self.assertEqual(powersets([1]), [[],[1]])
         self.assertEqual(powersets([1,2]), [[], [2], [1], [2, 1]])
+
 
 if __name__ == "__main__":
     unittest.main()
