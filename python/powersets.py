@@ -1,7 +1,8 @@
+import unittest
 from copy import deepcopy
 
 
-def powersets(elements, current):
+def powersets(elements, current=0):
     """Generate a set of all subset
 
     :param elements: A set of elements
@@ -10,6 +11,8 @@ def powersets(elements, current):
     """
     if len(elements) == current:
         return [[]]
+
+    #A powerset P(n) is composed of P(n-1) unioned with (P(n-1) + n)
 
     subset_previous = powersets(elements, current + 1)
     subset_current = deepcopy(subset_previous)
@@ -25,4 +28,12 @@ def powersets(elements, current):
     return new_subset
 
 
-print powersets([1, 2, 3], 0)
+class TestPowerSets(unittest.TestCase):
+
+    def test_normals(self):
+        self.assertEqual(powersets([]), [[]])
+        self.assertEqual(powersets([1]), [[],[1]])
+        self.assertEqual(powersets([1,2]), [[], [2], [1], [2, 1]])
+
+if __name__ == "__main__":
+    unittest.main()
