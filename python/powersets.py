@@ -3,7 +3,7 @@ from copy import deepcopy
 
 
 def powersets(elements, current=0):
-    """Generate a set of all subset
+    """Given a set S, generate another set which contains all of S's subset
 
     :param elements: A set of elements
     :param current: The current index to permute on
@@ -21,11 +21,11 @@ def powersets(elements, current=0):
         sub.append(elements[current])
 
     #Using extends() seems to cause unexpected behavior with nested lists
-    new_subset = subset_previous
-    for sub in subset_current:
-        new_subset.append(sub)
 
-    return new_subset
+    for sub in subset_current:
+        subset_previous.append(sub)
+
+    return subset_previous
 
 
 class TestPowerSets(unittest.TestCase):
