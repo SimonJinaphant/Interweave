@@ -1,10 +1,14 @@
 def anagram_group(words):
-
+    """Given a list of words, group anagrams of the same word together into a list
+    :param words: A list of words
+    :return: A collection of lists each containing the same anagrams
+    """
     record = {}
+
     for word in words:
         sum = 0
-        for letter in word:
-            sum += ord(letter)-ord('a')
+        for index, letter in enumerate(word):
+            sum += ord(letter) - ord('a')
 
         if sum in record:
             record[sum].append(word)
