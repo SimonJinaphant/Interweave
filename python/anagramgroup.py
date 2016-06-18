@@ -1,3 +1,6 @@
+import unittest
+
+
 def anagram_group(words):
     """Given a list of words, group anagrams of the same word together into a list
 
@@ -23,4 +26,8 @@ def anagram_group(words):
 
     return result
 
-print anagram_group(["tea", "eat", "ate", "tan", "bat", "nat"])
+
+class AnagramGroupTest(unittest.TestCase):
+
+    def test_normal(self):
+        self.assertEqual(anagram_group(["tea", "eat", "ate", "tan", "bat", "nat"]), [['tan', 'nat'], ['tea', 'eat', 'ate'], ['bat']] )
