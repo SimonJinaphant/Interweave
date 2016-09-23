@@ -1,3 +1,6 @@
+import unittest
+
+
 def flip_bit(bit):
     """
     Invert a bit regardless if its signed/unsigned
@@ -5,6 +8,7 @@ def flip_bit(bit):
     :return: The invert of the input bit
     """
     return 1 ^ bit
+
 
 def max_bitwise(a, b):
     """Determine the maximum of two numbers without using if/else or comparision operators
@@ -24,5 +28,19 @@ def max_bitwise(a, b):
     return a * flip_bit(difference_sign) + b * difference_sign
 
 
-print max_bitwise(15, 9)
-print max_bitwise(9,15)
+class MaxTest(unittest.TestCase):
+
+    def test_normal(self):
+        self.assertEqual(max_bitwise(15, 9), max(15, 9))
+        self.assertEqual(max_bitwise(9, 15), max(9, 15))
+        self.assertEqual(max_bitwise(0, 5), max(0, 5))
+
+    def test_negative(self):
+        self.assertEqual(max_bitwise(0, -1), max(0, -1))
+        self.assertEqual(max_bitwise(-1, 0), max(-1, 0))
+        self.assertEqual(max_bitwise(-5, -12), max(-5, -12))
+        self.assertEqual(max_bitwise(-12, -5), max(-12, -5))
+
+
+if __name__ == "__main__":
+    unittest.main()
