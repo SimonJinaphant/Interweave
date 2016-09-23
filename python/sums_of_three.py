@@ -1,8 +1,11 @@
+import unittest
+
+
 def sums_of_three(numbers):
     """
     Given an array of numbers, find if three of its elements can sum to zero
 
-    :param numbers: An array of unsorted integers
+    :param numbers: An array of unsorted integers that has a minimum of 3 elements
     :return: True if there exist 3 elements which sums to 0
     """
 
@@ -20,4 +23,14 @@ def sums_of_three(numbers):
 
     return False
 
-print sums_of_three([-5, 0, -2, 3, 120])
+
+class SumsOfThreeTest(unittest.TestCase):
+    def test_normal(self):
+        self.assertEqual(sums_of_three([-5, 0, -2, 3, 120]), False)
+        self.assertEqual(sums_of_three([-5, 0, -2, 7, 120]), True)
+        self.assertEqual(sums_of_three([-1, 1, 0]), True)
+        self.assertEqual(sums_of_three([-1, 2, 0]), False)
+        self.assertEqual(sums_of_three([-100, -80, -50, -70, 150]), True)
+
+if __name__ == "__main__":
+    unittest.main()
