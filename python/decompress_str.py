@@ -1,3 +1,6 @@
+import unittest
+
+
 def decompress_str(compressed):
     """
     A string has been compressed finely such that repeated sequences are shortened by a number.
@@ -38,6 +41,14 @@ def decompress_str(compressed):
 
     return "".join(final_str)
 
-print decompress_str("3[a2[c]]")
-print decompress_str("3[a]2[bc]")
-print decompress_str("2[abc]3[cd]ef")
+
+class TestDecompress(unittest.TestCase):
+
+    def test_normal(self):
+        self.assertEqual(decompress_str("3[a2[c]]"), "accaccacc")
+        self.assertEqual(decompress_str("3[a]2[bc]"), "aaabcbc")
+        self.assertEqual(decompress_str("2[abc]3[cd]ef"), "abcabccdcdcdef")
+
+
+if __name__ == "__main__":
+    unittest.main();
