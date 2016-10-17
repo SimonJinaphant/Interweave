@@ -12,8 +12,12 @@ def get_bit(binary, bit_index):
 
 
 def missing_binary(bin_sequence):
-    """Given an list of unique 32 bit binary numbers whose values range from 0 to N (inclusive), there is
-    an element that is missing, find that value within linear time.
+    """Given an unsorted list of N unique 32-bit binary sequences whose decimal values ranges from 0 to N (inclusive),
+    there is one binary sequence that is missing, find that value.
+
+    Note: Unlike an array of normal integers ie: [0, 1, 2, 4] you are not allowed to perform mathematical operators
+    such as + - * / on these binary sequences. Therefore you cannot simply sum up the list and subtract it
+    from the expected sum to determine the missing number.
 
     :param bin_sequence: An list of unique integers from 0 to N (inclusive) with one missing number
     :return: The missing number n of the sequence. 0 <= n < N
@@ -23,7 +27,7 @@ def missing_binary(bin_sequence):
 
 def _missing_binary(bin_sequence, current_index):
 
-    #Basecase: Reached maximum amount of bit possible
+    # Basecase: Reached maximum amount of bit possible
     if current_index >= 32:
         return 0
 
@@ -37,10 +41,17 @@ def _missing_binary(bin_sequence, current_index):
             lsb_of_zeros.append(bin)
 
     if len(lsb_of_zeros) <= len(lsb_of_ones):
+        # There's more 1 bits, indicating that the missing binary has bit value of 0 at the current bit index
+        # We'll continue the search with the smaller subset of binary sequences
+
         return (_missing_binary(lsb_of_zeros, current_index+1) << 1) | 0
+
     else:
-        #There's more 0 bits, indicating that the missing binary has LSB of 1
-        #so we'll continue the search with all binaries with LSB of 1
+        # There's more 0 bits, indicating that the missing binary has bit value of 1 at the current bit index
+        # We'll continue the search with this smaller subset of binary sequences
+
+        # (n << 1) | 1  is a shorthand for appending a bit in the LSB position with the value 1
+        # ex: If n = 0100 then the above will create 010001
         return (_missing_binary(lsb_of_ones, current_index+1) << 1) | 1
 
 
@@ -48,8 +59,8 @@ class TestMissingBinary(unittest.TestCase):
 
     def test_normal(self):
         self.assertEqual(missing_binary([0, 1, 2, 4]), 0b11)
-        self.assertEqual(missing_binary([1, 2, 3]), 0)
-        self.assertEqual(missing_binary([0, 3, 2, 4]), 0b1)
+        self.assertEqual(missing_binary([2, 1, 3]), 0)
+        self.assertEqual(missing_binary([3, 4, 2, 0]), 0b1)
         self.assertEqual(missing_binary([0, 0, 1, 2, 4]), 0b11)
 
     @unittest.expectedFailure
