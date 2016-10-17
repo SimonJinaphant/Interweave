@@ -1,4 +1,19 @@
 def decompress_str(compressed):
+    """
+    A string has been compressed finely such that repeated sequences are shortened by a number.
+
+    Example:
+        aaabcbc -> 3[a]2[bc]
+        accaccacc -> 3[a2[c]]
+        abcabccdcdcdef -> 2[abc]3[cd]ef
+
+    Reverse the compression and restore the original uncompressed string.
+    You may assume the input string is always valid such
+    that there's no white space, extra/missing brackets, etc..
+
+    :param compressed: The compressed string with the format k[str] where str is repeated k times
+    :return: The uncompressed string
+    """
     character_stack = []
     black_list = set([str(i) for i in xrange(10)])
 
@@ -25,3 +40,4 @@ def decompress_str(compressed):
 
 print decompress_str("3[a2[c]]")
 print decompress_str("3[a]2[bc]")
+print decompress_str("2[abc]3[cd]ef")
