@@ -1,3 +1,6 @@
+import unittest
+
+
 def not_a_triple(numbers):
     """
     Given an array where every element occurs three times, except one element.
@@ -6,6 +9,9 @@ def not_a_triple(numbers):
     :param numbers:
     :return:
     """
+    if len(numbers) % 3 == 0:
+        raise Exception("Invalid input array")
+
     result = 0
 
     # Outer loop is constant so total runtime ~O(B*n) = O(n) where B is the sizeof(int)
@@ -22,4 +28,14 @@ def not_a_triple(numbers):
 
     return result
 
-print not_a_triple([5,5,5, 3, 3, 3, 3])
+
+class TestNotATriple(unittest.TestCase):
+
+    def test_normal(self):
+        self.assertEqual(not_a_triple([5, 5, 5, 3]), 3)
+        self.assertEqual(not_a_triple([1, 4, 4, 4, 2, 2, 2]), 1)
+        self.assertEqual(not_a_triple([10, 10, 8, 9, 2, 10, 9, 9, 8, 8]), 2)
+
+
+if __name__ == "__main__":
+    unittest.main()
