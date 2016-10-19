@@ -76,11 +76,15 @@ class TestPartitionSearch(unittest.TestCase):
 
     def setUp(self):
         self.x = [-32, 40, 2, 59, 40, -32, 50, -24, 9, -290]
+        self.y = [1, 2, 3, 4, 5, 6, 7]
 
     def test_exist(self):
 
         for i in self.x:
             self.assertEquals(partition_search(self.x, i), True)
+
+        for j in self.y:
+            self.assertEqual(partition_search(self.y, j), True)
 
     def test_nonexist(self):
         self.assertEqual(partition_search(self.x, 20), False)
