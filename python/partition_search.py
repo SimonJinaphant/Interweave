@@ -1,3 +1,6 @@
+import unittest
+
+
 def partition_search(input_numbers, key):
     """
     Search an unsorted array by partitioning sections of it.
@@ -69,8 +72,19 @@ def swap(input_list, a, b):
     input_list[b] = temp
 
 
-x = [-32, 40, 2, 59, 40, -32, 50, -24, 9, -290]
-for i in x:
-    assert partition_search(x, i) == True
+class TestPartitionSearch(unittest.TestCase):
 
-assert partition_search(x, 20) == False
+    def setUp(self):
+        self.x = [-32, 40, 2, 59, 40, -32, 50, -24, 9, -290]
+
+    def test_exist(self):
+
+        for i in self.x:
+            self.assertEquals(partition_search(self.x, i), True)
+
+    def test_nonexist(self):
+        self.assertEqual(partition_search(self.x, 20), False)
+
+
+if __name__ == "__main__":
+    unittest.main()
