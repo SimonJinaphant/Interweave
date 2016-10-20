@@ -1,4 +1,10 @@
 def longest_repeating_substring(line):
+    """
+    Find the longest repeating substring in a word.
+
+    :param line: The string to find the substring upon
+    :return: A substring s where 1 < len(s) < len(word)
+    """
     #Build suffix array
     suffix = sorted([line[i:] for i in xrange(len(line))])
 
@@ -18,6 +24,11 @@ def longest_repeating_substring(line):
 
 
 def longest_prefix(left, right):
+    """
+    Find rhe longest common prefix between two strings.
+
+    :return: The longest prefix between the two strings
+    """
     for i in xrange(min(len(left), len(right))):
         if left[i] != right[i]:
             return left[0:i]
