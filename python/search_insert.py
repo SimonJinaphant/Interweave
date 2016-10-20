@@ -1,4 +1,12 @@
 def search_insert(numbers, target):
+    """
+    Given a sorted array and target value, return the index of the target in the array,
+    if the target doesn't exist then return where it would be if it was in the array.
+
+    :param numbers: List of integer numbers
+    :param target: The value to find in the array
+    :return: The index of target
+    """
     lower_bound = 0
     upper_bound = len(numbers) - 1
 
