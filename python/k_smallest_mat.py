@@ -1,3 +1,4 @@
+import unittest
 from math import sqrt, pow
 
 
@@ -38,7 +39,21 @@ def k_smallest_matrix(matrix, k):
 
     return current_number
 
-print k_smallest_matrix([[1, 5, 9],
-                         [10, 11, 13],
-                         [12, 13, 15]],
-                        8)
+
+class TestKSmallestMatrix(unittest.TestCase):
+
+    def test_normal(self):
+
+        matrix = [[1, 5, 9],
+                [10, 11, 13],
+                [12, 13, 15]]
+
+        self.assertEqual(k_smallest_matrix(matrix, 8), 13)
+        self.assertEqual(k_smallest_matrix(matrix, 1), 1)
+        self.assertEqual(k_smallest_matrix(matrix, 9), 15)
+        
+        #self.assertEqual(k_smallest_matrix(matrix, 5), 11)
+
+
+if __name__ == "__main__":
+    unittest.main()
