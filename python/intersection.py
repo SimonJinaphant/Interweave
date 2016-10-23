@@ -1,3 +1,6 @@
+import unittest
+
+
 def intersection(list_a, list_b):
     """
     Given two sorted list of numbers, determine the common numbers they share.
@@ -22,3 +25,20 @@ def intersection(list_a, list_b):
 
     return common
 
+
+class TestIntersection(unittest.TestCase):
+
+    def test_normal(self):
+        self.assertEqual(intersection([1, 8, 10, 12, 14, 21, 22], [3, 10, 14, 15, 21]), [10, 14, 21])
+        # No intersection
+        self.assertEqual(intersection([1, 8, 10, 12, 22], [3, 14, 15, 21]), [])
+        self.assertEqual(intersection([1, 8, 10, 12, 22], []), [])
+        # All elements
+        self.assertEqual(intersection([4, 10, 14, 19], [4, 10, 14, 19]), [4, 10, 14, 19])
+        # Only first n
+        self.assertEqual(intersection([4, 10, 14, 19, 21, 24, 50], [4, 10, 14, 19]), [4, 10, 14, 19])
+        self.assertEqual(intersection([4, 10, 14, 19], [4, 10, 14, 19, 21, 42, 40]), [4, 10, 14, 19])
+
+
+if __name__ == "__main__":
+    unittest.main()
