@@ -1,5 +1,5 @@
 import unittest
-from math import sqrt, pow
+import heapq
 
 
 def k_smallest_matrix(matrix, k):
@@ -12,32 +12,21 @@ def k_smallest_matrix(matrix, k):
 
     :return: An k-th smallest element in the matrix.
     """
-    sqrt_k = sqrt(k)
-    cut_off = int(sqrt_k)
 
-    if sqrt_k == float(cut_off):
-        # K is a perfect square so we'll return the diagonal
-        return matrix[cut_off-1][cut_off-1]
+    # Take the entire first row and heapify it
+    open_list = [(matrix[y][x], y, x) for x in xrange(len(matrix)) for y in xrange(len(matrix))]
+    heapq.heapify(open_list)
+    current_min = None
 
-    # The answer is within the subvectors
-    cut_off_row = 0
-    cut_off_col = 0
-    current_number = None;
+    # Take the min element and possibly enqueue the element below it
+    while k != 0:
+        current_min, current_y, current_x = heapq.heappop(open_list)
 
-    # Find how many elements we need to check until we reach the new k value
-    until_k = k - int(pow(cut_off, 2.0))
+        if y < len(matrix):
+            heapq.heappush(open_list, (matrix[y][x], current_y, current_x))
 
-    while until_k != 0:
-        if matrix[cut_off][cut_off_col] < matrix[cut_off_row][cut_off]:
-            current_number = matrix[cut_off][cut_off_col]
-            cut_off_col += 1
-        else:
-            current_number = matrix[cut_off_row][cut_off]
-            cut_off_row += 1
-
-        until_k -= 1
-
-    return current_number
+        k -= 1
+    return current_min
 
 
 class TestKSmallestMatrix(unittest.TestCase):
@@ -50,10 +39,8 @@ class TestKSmallestMatrix(unittest.TestCase):
 
         self.assertEqual(k_smallest_matrix(matrix, 8), 13)
         self.assertEqual(k_smallest_matrix(matrix, 1), 1)
+        self.assertEqual(k_smallest_matrix(matrix, 5), 11)
         self.assertEqual(k_smallest_matrix(matrix, 9), 15)
-        
-        #self.assertEqual(k_smallest_matrix(matrix, 5), 11)
-
 
 if __name__ == "__main__":
     unittest.main()
