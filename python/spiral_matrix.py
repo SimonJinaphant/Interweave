@@ -1,4 +1,9 @@
 def spiral_print(matrix):
+    """
+    Given an n x m matrix, print out the matrix is a clockwise spiral
+
+    :param matrix: The n x m matrix to print out
+    """
     cols = len(matrix)
     rows = len(matrix[0])
 
@@ -37,20 +42,21 @@ def spiral_print(matrix):
         end_y -= 1
 
 
+print spiral_print([
+            [1, 2, 3, 4],
+            [5, 6, 7, 8],
+            [9, 10, 11, 12],
+            [13, 14, 15, 16]])
 
-print spiral_print([[1, 2, 3, 4],
-              [5, 6, 7, 8],
-              [9, 10, 11, 12],
-              [13, 14, 15, 16]])
-
-print spiral_print([[1, 2, 3, 4, 5],
-              [6, 7, 8, 9, 10],
-              [11, 12, 13, 14 ,15],
-              [16, 17, 18, 19, 20]])
+print spiral_print([
+            [1, 2, 3, 4, 5],
+            [6, 7, 8, 9, 10],
+            [11, 12, 13, 14 ,15],
+            [16, 17, 18, 19, 20]])
 
 print spiral_print([[1, 2, 3, 4, 5]])
 
 print spiral_print([[1],
-              [6],
-              [11],
-              [16]])
+                    [6],
+                    [11],
+                    [16]])
