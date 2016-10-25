@@ -3,9 +3,9 @@ def sums_of_two(numbers, target):
     Given a sorted array of integers, find two values which add up to the target,
     and return their indices.
 
-    :param numbers:
-    :param target:
-    :return:
+    :param numbers: Array of integers in ascending order.
+    :param target: The value to find in the array
+    :return: A tuple of the indices for the two values which sums up to target, or (None, None)
     """
 
     lower = 0
@@ -13,9 +13,12 @@ def sums_of_two(numbers, target):
 
     while lower <= upper:
         current_sum = numbers[lower]+numbers[upper]
+
         if current_sum > target:
+            # Take a smaller number since we've summed too much
             upper -= 1
         elif current_sum < target:
+            # Take a larger number since we've summed to little
             lower += 1
         else:
             return lower, upper
@@ -28,17 +31,19 @@ def sums_of_two_unsorted(numbers, target):
     Given an unsorted array of integers, find two values which add up to the target,
     and return their indices
 
-    :param numbers:
-    :param target:
-    :return:
+    :param numbers: Array of integers that's unsorted
+    :param target: The value to find in the array
+    :return: A tuple of the indices for the two values which sums up to target, or (None, None)
     """
-
+    # Key holds the number we need to find to sum to the target, value is the index of the first number
     record = {}
 
     for i, num in enumerate(numbers):
         if num in record:
+            # We found a number we needed to reach the target
             return record[num], i
         else:
+            # Record the number we want to find
             record[target-num] = i
 
     return None, None
