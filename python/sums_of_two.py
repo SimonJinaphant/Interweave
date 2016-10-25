@@ -1,3 +1,6 @@
+import unittest
+
+
 def sums_of_two(numbers, target):
     """
     Given a sorted array of integers, find two values which add up to the target,
@@ -11,7 +14,7 @@ def sums_of_two(numbers, target):
     lower = 0
     upper = len(numbers) - 1
 
-    while lower <= upper:
+    while lower < upper:
         current_sum = numbers[lower]+numbers[upper]
 
         if current_sum > target:
@@ -48,5 +51,18 @@ def sums_of_two_unsorted(numbers, target):
 
     return None, None
 
-print sums_of_two([2, 7, 11, 15], 9)
-print sums_of_two_unsorted([2, 7, 11, 15], 9)
+
+class TestSumsOfTwo(unittest.TestCase):
+    def test_sorted(self):
+        self.assertEqual(sums_of_two([2, 7, 11, 15], 9), (0, 1))
+        self.assertEqual(sums_of_two([2, 7, 11, 15], 17), (0, 3))
+        self.assertEqual(sums_of_two([2, 7, 11, 15], 14), (None, None))
+
+    def test_unsorted(self):
+        self.assertEqual(sums_of_two_unsorted([2, 7, 11, 15], 9), (0, 1))
+        self.assertEqual(sums_of_two_unsorted([2, 7, 11, 15], 17), (0, 3))
+        self.assertEqual(sums_of_two_unsorted([2, 7, 11, 15], 14), (None, None))
+
+
+if __name__ == "__main__":
+    unittest.main()
