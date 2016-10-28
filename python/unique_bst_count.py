@@ -1,3 +1,6 @@
+import unittest
+
+
 def unique_bst_count_2(n):
     """
     A bottom-up approach of the unique bst count problem with caching
@@ -63,6 +66,17 @@ def unique_bst_count(n):
 
     return count
 
-print unique_bst_count(4)
-print unique_bst_count_2(4)
 
+class TestUniqueBSTCount(unittest.TestCase):
+
+    def test_basecase(self):
+        self.assertEqual(unique_bst_count(0), 0)
+        self.assertEqual(unique_bst_count(1), 1)
+
+    def test_normal(self):
+        self.assertEqual(unique_bst_count(2), 2)
+        self.assertEqual(unique_bst_count(3), 5)
+
+
+if __name__ == "__main__":
+    unittest.main()
