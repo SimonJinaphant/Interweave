@@ -1,3 +1,6 @@
+import unittest
+
+
 def search_insert(numbers, target):
     """
     Given a sorted array and target value, return the index of the target in the array,
@@ -21,5 +24,17 @@ def search_insert(numbers, target):
 
     return lower_bound
 
-assert search_insert([1,3,5,6], 5) == 2
-assert search_insert([1,3,5,6], 2) == 1
+
+class TestSearchInsert(unittest.TestCase):
+
+    def test_normal(self):
+        self.assertEqual(search_insert([1, 3, 5, 6], 5), 2)
+        self.assertEqual(search_insert([1, 3, 5, 6], 2), 1)
+
+    def test_borders(self):
+        self.assertEqual(search_insert([1, 3, 5, 6], 0), 0)
+        self.assertEqual(search_insert([1, 3, 5, 6], 7), 4)
+
+
+if __name__ == "__main__":
+    unittest.main()
