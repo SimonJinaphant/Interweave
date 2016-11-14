@@ -1,4 +1,11 @@
 def successor_node(node):
+    """
+    Given access to a node (each node has a parent pointer too), determine
+    the in-order successor node within the tree.
+
+    :param node: The current node
+    :return: The in-order successor
+    """
     if node.right is not None:
         # Answer is the leftmost node in the right subtree
         current = node.right
