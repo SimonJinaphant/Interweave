@@ -2,6 +2,25 @@ import heapq
 
 
 def k_smallest_sum_pair(nums1, nums2, k):
+    """
+    373. You are given two integer arrays nums1 and nums2 sorted in ascending order and an integer k.
+    Define a pair (u,v) which consists of one element from the first array and one element from the second array.
+
+    Find the k pairs (u1,v1),(u2,v2) ...(uk,vk) with the smallest sums.
+
+    Ex:
+        Given nums1 = [1,7,11]
+        nums2 = [2,4,6]
+        k = 3
+
+        Return: [ [1,2], [1,4], [1,6] ]
+
+    :param nums1: The first array of ascending integers
+    :param nums2: The second array of ascending integers
+    :param k: The amount of min sum pairs to find
+
+    :return: An array of sum pairs which are the smallest sums
+    """
     lookup = {v: i for i, v in enumerate(nums1)}
     min_heap = []
 
