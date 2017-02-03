@@ -20,28 +20,21 @@ def word_break(compact_string, dictionary):
         :param end: Ending index (non-inclusive)
         :return:
         """
-        print compact_string[start:end]
-        if result[start][end-1] == None:
-            if end - start == 1:
-                #Basecase: single letter
-                result[start][end-1] = compact_string[start:end] in dictionary
-                return result[start][end-1]
+        if result[start][end-1] is None:
 
+            # First check if the substring is actually a complete valid word
             if compact_string[start:end] in dictionary:
                 result[start][end-1] = True
                 return result[start][end-1]
 
-            split_result = False
+            # The substring isn't a valid word but check if we can split it into a pair of valid words
             for split_index in xrange(end-start-1):
-                left_substring = compact_string[start:start+split_index+1]
-                right_substring = compact_string[start+split_index+1: end]
-
-                #print "\t{0}, {1} & {2}".format(compact_string[start:end], left_substring, right_substring)
-                split_result = can_break(start, start+split_index+1) and can_break(start+split_index+1, end)
-                if split_result:
+                if can_break(start, start+split_index+1) and can_break(start+split_index+1, end):
+                    # The substring can be split into 2 valid dictionary words
                     result[start][end-1] = True
                     return result[start][end-1]
 
+            # Looks like this substring isn't a valid dictionary word
             result[start][end-1] = False
         else:
             return result[start][end-1]
