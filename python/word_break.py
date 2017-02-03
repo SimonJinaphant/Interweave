@@ -11,7 +11,7 @@ def word_break(compact_string, dictionary):
     :return: True if the input string can be split into multiple valid words
     """
 
-    result = [[None] * len(compact_string) ] * len(compact_string)
+    result = [[None for x in xrange(len(compact_string))] for y in xrange(len(compact_string))]
 
     def can_break(start, end):
         """
@@ -21,6 +21,30 @@ def word_break(compact_string, dictionary):
         :return:
         """
         print compact_string[start:end]
+        if result[start][end-1] == None:
+            if end - start == 1:
+                #Basecase: single letter
+                result[start][end-1] = compact_string[start:end] in dictionary
+                return result[start][end-1]
+
+            if compact_string[start:end] in dictionary:
+                result[start][end-1] = True
+                return result[start][end-1]
+
+            split_result = False
+            for split_index in xrange(end-start-1):
+                left_substring = compact_string[start:start+split_index+1]
+                right_substring = compact_string[start+split_index+1: end]
+
+                #print "\t{0}, {1} & {2}".format(compact_string[start:end], left_substring, right_substring)
+                split_result = can_break(start, start+split_index+1) and can_break(start+split_index+1, end)
+                if split_result:
+                    result[start][end-1] = True
+                    return result[start][end-1]
+
+            result[start][end-1] = False
+        else:
+            return result[start][end-1]
 
 
     """
@@ -39,7 +63,8 @@ def word_break(compact_string, dictionary):
             can_break(starting_substr, starting_substr + word_size)
 
 
-    print result
+    for row in result:
+        print row
 
 
 
