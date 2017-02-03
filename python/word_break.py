@@ -1,5 +1,3 @@
-from math import ceil
-
 def word_break(compact_string, dictionary):
     """
     Given a string and a dictionary, return true if string can be split
@@ -15,10 +13,12 @@ def word_break(compact_string, dictionary):
 
     def can_break(start, end):
         """
+        Given a string, determine if the entire string is a valid dictionary word OR
+        it isn't, determine if it can be split into a pair of valid dictionary words
 
-        :param start: Starting index
-        :param end: Ending index (non-inclusive)
-        :return:
+        :param start: Starting index of the string
+        :param end: Ending index (non-inclusive) of the string
+        :return: True if the string is either a completely valid word OR contains a pair of valid words
         """
         if result[start][end-1] is None:
 
@@ -37,6 +37,7 @@ def word_break(compact_string, dictionary):
             # Looks like this substring isn't a valid dictionary word
             result[start][end-1] = False
         else:
+            # We already solved this sub-problem earlier, thankfully we cached the result.
             return result[start][end-1]
 
 
