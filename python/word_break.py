@@ -24,14 +24,14 @@ def word_break(compact_string, dictionary):
 
             # First check if the substring is actually a complete valid word
             if compact_string[start:end] in dictionary:
-                result[start][end-1] = True
+                result[start][end-1] = (True, start, True)
                 return result[start][end-1]
 
             # The substring isn't a valid word but check if we can split it into a pair of valid words
             for split_index in xrange(end-start-1):
                 if can_break(start, start+split_index+1) and can_break(start+split_index+1, end):
                     # The substring can be split into 2 valid dictionary words
-                    result[start][end-1] = True
+                    result[start][end-1] = (True, start+split_index, False)
                     return result[start][end-1]
 
             # Looks like this substring isn't a valid dictionary word
@@ -51,17 +51,22 @@ def word_break(compact_string, dictionary):
 
     """
     for word_size in xrange(1, len(compact_string) + 1):
-
         for starting_substr in xrange(len(compact_string) - word_size + 1):
-
             can_break(starting_substr, starting_substr + word_size)
 
+    start = 0
+    separable, terminating, whole = result[0][len(compact_string) - 1]
+    separated_results = []
+    while separable and not whole:
+        separated_results.append(compact_string[start:terminating+1])
+        start = terminating + 1
+        separable, terminating, whole = result[start][len(compact_string) - 1]
 
-    for row in result:
-        print row
+    separated_results.append(compact_string[start:])
+    return separated_results
 
-
-
-
-
-word_break("Iamace", {"I", "am", "ace", "a", "ice"})
+for i in word_break("Iamace", {"I", "am", "ace", "a", "ice"}):
+    print i,
+    
+for j in word_break("applepie", {"a", "apple", "orange", "I", "pie"}):
+    print j,
