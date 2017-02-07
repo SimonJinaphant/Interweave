@@ -67,6 +67,6 @@ def word_break(compact_string, dictionary):
 
 for i in word_break("Iamace", {"I", "am", "ace", "a", "ice"}):
     print i,
-    
+
 for j in word_break("applepie", {"a", "apple", "orange", "I", "pie"}):
     print j,
