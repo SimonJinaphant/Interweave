@@ -1,3 +1,6 @@
+import unittest
+
+
 def counting_bits(num):
     """
     For every numbers i in the range 0 <= i <= num calculate the number of 1's in their binary
@@ -29,6 +32,18 @@ def counting_bits(num):
 
     return result
 
-print counting_bits(5)
-print counting_bits(10)
-print counting_bits(15)
+
+class TestCountingBits(unittest.TestCase):
+
+    def test_normal(self):
+        self.assertEqual(counting_bits(5), [0, 1, 1, 2, 1, 2])
+        self.assertEqual(counting_bits(10), [0, 1, 1, 2, 1, 2, 2, 3, 1, 2, 2])
+        self.assertEqual(counting_bits(15), [0, 1, 1, 2, 1, 2, 2, 3, 1, 2, 2, 3, 2, 3, 3, 4])
+
+    def test_edge(self):
+        self.assertEqual(counting_bits(0), [0])
+        self.assertEqual(counting_bits(1), [0, 1])
+
+
+if __name__ == "__main__":
+    unittest.main()
