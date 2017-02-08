@@ -1,3 +1,6 @@
+import unittest
+
+
 def queue_reconstruct(pairs):
     """
     406. Suppose you have a random list of people standing in a queue.
@@ -14,13 +17,14 @@ def queue_reconstruct(pairs):
     :return: Same list of 2D tuples that satisfy the above queue requirement
     """
     """
-    Sort first by h value in descending order, resolving tie-breakers with the k value in ascending order
-    For a Java-style comparator:
+    Sort first by h value in descending order, resolving tie-breakers in favour of the smaller k value
+
+    ie: For a Java-style comparator:
         def compare(left, right):
             if left.h == right.h:
                 return left.k < right.k
 
-            return left.h < right.h
+            return left.h > right.h
     """
     pairs = sorted(pairs, key=lambda element: (element[0], -element[1]), reverse=True)
 
@@ -52,4 +56,12 @@ def queue_reconstruct(pairs):
 
     return result
 
-print queue_reconstruct([(7,1), (4,4), (7,0), (5,0), (6,1), (5,2)])
+
+class TestQueueReconstruct(unittest.TestCase):
+    def test_normals(self):
+        self.assertEqual(queue_reconstruct([(7,1), (4,4), (7,0), (5,0), (6,1), (5,2)]),
+                         [(5,0), (7,0), (5,2), (6,1), (4,4), (7,1)])
+
+
+if __name__ == "__main__":
+    unittest.main()
