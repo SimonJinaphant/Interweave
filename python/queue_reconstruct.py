@@ -21,7 +21,6 @@ def queue_reconstruct(pairs):
                 return left.k < right.k
 
             return left.h < right.h
-
     """
     pairs = sorted(pairs, key=lambda element: (element[0], -element[1]), reverse=True)
 
@@ -30,19 +29,27 @@ def queue_reconstruct(pairs):
 
     result = [pairs.pop(0)]
 
+    # By sorting the pairs earlier we ensure that all pairs that come before it have a larger h value so determining
+    # if k can be satisfied is easier
     for h, k in pairs:
 
-        while len(result) < k:
-            result.append(temp_stack.pop())
-
         while len(result) > k:
+            # There's too many larger elements in fron of this pair
+            # We need to move the excess pairs away but maintain their order
             temp_stack.append(result.pop())
 
+        while len(result) < k:
+            # There's suppose to be more larger elements in front of this pair
+            # We need to move the excess pairs back in the order they were removed
+            result.append(temp_stack.pop())
+
+        # Queue looks good, incoming pair's k value is satisfied
         result.append((h, k))
 
+    # Put back any remaining pairs we'd remove
     while len(temp_stack) != 0:
         result.append(temp_stack.pop())
 
-    print result
+    return result
 
-queue_reconstruct([(7,1), (4,4), (7,0), (5,0), (6,1), (5,2)])
+print queue_reconstruct([(7,1), (4,4), (7,0), (5,0), (6,1), (5,2)])
