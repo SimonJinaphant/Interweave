@@ -1,8 +1,11 @@
+import unittest
+
+
 def regex_match(text, pattern):
     """
     Determine if the given text matches the pattern using simple regex including:
         . (for any character)
-        * (for 0 or 1 character)
+        * (for 0 or more character)
 
     :param text: The text to compare
     :param pattern: The pattern to check against the text
@@ -40,4 +43,12 @@ def regex_match(text, pattern):
 
     return result[-1][-1]
 
-print regex_match("xaabyc", "xa*b.c")
+
+class RegexMatchingTest(unittest.TestCase):
+
+    def test_normals(self):
+        self.assertEqual(regex_match("xaabyc", "xa*b.c"), True)
+
+
+if __name__ == "__main__":
+    unittest.main()
