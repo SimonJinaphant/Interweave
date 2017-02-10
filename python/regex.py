@@ -1,14 +1,15 @@
 def regex_match(text, pattern):
     """
+    Determine if the given text matches the pattern using simple regex including:
+        . (for any character)
+        * (for 0 or 1 character)
 
-    :param text:
-    :param pattern:
-    :return:
+    :param text: The text to compare
+    :param pattern: The pattern to check against the text
+    :return: True if the given text matches the pattern
     """
 
-    """
-    At cell T[i][j], we store the result if @text[:i] matches @pattern[:j]
-    """
+    # At cell T[i][j], we store the result if @text[:i] matches @pattern[:j]
     result = [[False for x in xrange(len(pattern)+1)] for y in xrange(len(text)+1)]
 
     # Empty string matches empty pattern
@@ -36,9 +37,6 @@ def regex_match(text, pattern):
                 # which involves jumping 2 spaces back in our table (one for the *, another for the character)
                 else:
                     result[i][j] = result[i][j-2]
-
-    for row in result:
-        print row
 
     return result[-1][-1]
 
