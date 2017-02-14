@@ -48,4 +48,4 @@ def knapsack(capacity, items):
 
     return loot_bag
 
-print knapsack(8, [(1,1), (3,4), (4,5), (5,7)])
+print knapsack(7, [(1,1), (3,4), (4,5), (5,7)])
