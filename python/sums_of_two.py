@@ -34,6 +34,9 @@ def sums_of_two_unsorted(numbers, target):
     Given an unsorted array of integers, find two values which add up to the target,
     and return their indices
 
+    Can you do it in one pass of the array? Pretend the array is actually an
+    iterator which can only go forward once and never reset.
+
     :param numbers: Array of integers that's unsorted
     :param target: The value to find in the array
     :return: A tuple of the indices for the two values which sums up to target, or (None, None)
