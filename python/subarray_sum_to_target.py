@@ -3,11 +3,19 @@ import unittest
 
 
 def subarray_sum_to_target(numbers, target):
+    """
+    Determine the contiguous sub-array whose elements all sum to the target number
+
+    :param numbers: Unsorted array of positive integer numbers
+    :param target: The target value of the sub-array's sum
+
+    :return: The subarray whose element all sum to the target
+    """
     start = 0
     end = 1
     current_sum = numbers[start]
 
-    while end != len(numbers):
+    while end < len(numbers):
         if current_sum < target:
             current_sum += numbers[end]
             end += 1
@@ -15,9 +23,9 @@ def subarray_sum_to_target(numbers, target):
             current_sum -= numbers[start]
             start += 1
         else:
-            return numbers[start: end]
+            break
 
-    return None
+    return numbers[start: end]
 
 
 class SubarraySumToTargetTest(unittest.TestCase):
