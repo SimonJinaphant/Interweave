@@ -1,19 +1,19 @@
-def decode_ways(message):
-    return _decode_ways("", list(message))
+def decode_interpretation(message):
+    _decode("", list(message))
 
-def _decode_ways(current, remaining):
 
-    if len(remaining) == 0:
-        print current
+def _decode(current_message, pending_digits):
+    if len(pending_digits) == 0:
+        print current_message
         return
 
-    new_current = list(current)
-    new_current.append(remaining.pop(0))
+    single_decode_message = current_message + chr( ord('a') + int(pending_digits[0]) - 1)
+    single = pending_digits.pop(0)
+    _decode(single_decode_message, pending_digits[:])
 
-    _decode_ways(new_current[:], remaining[:])
+    if len(pending_digits) >= 1:
+        double_decode_message = current_message + chr( ord('a') + int( single + pending_digits[0]) - 1)
+        pending_digits.pop(0)
+        _decode(double_decode_message, pending_digits[:])
 
-    if len(remaining) > 1:
-        new_current.append(remaining.pop(0))
-        _decode_ways(new_current[:], remaining[:])
-
-print decode_ways("121")
+print decode_interpretation("121")
