@@ -1,4 +1,4 @@
-def partition_difference2(left, right, numbers, i):
+def partition_difference(numbers):
     """
     Given a set of integers, divide it into two subsets such that the absolute difference
     between their sums is minimal.
@@ -11,15 +11,18 @@ def partition_difference2(left, right, numbers, i):
     Subset1 = {1, 5, 6}, sum of Subset1 = 12
     Subset2 = {11}, sum of Subset2 = 11
 
-    :param left: The left subset
-    :param right: The right subset
-    :param numbers: The original set of numbers
-    :param i: The current number we're looking at in @numbers
+
+    :param numbers: A set of integers
+    :return: A tuple consisting of the two sets where the minimal is minimal and that minimal value
     """
+    return _partition_difference2([], [], numbers, 0)
+
+
+def _partition_difference2(left, right, numbers, i):
 
     if i == len(numbers):
         # Basecase: There's no more elements left in the original set
-        return [abs(sum(left) - sum(right)), left, right]
+        return abs(sum(left) - sum(right)), left, right
 
     # Take the current leading number from the original set
     current = numbers[i]
@@ -31,10 +34,8 @@ def partition_difference2(left, right, numbers, i):
     new_right = right[:]
     new_right.append(current)
 
-    return min(partition_difference2(new_left, right[:], numbers, i+1),
-               partition_difference2(left[:], new_right, numbers, i+1))
+    return min(_partition_difference2(new_left, right[:], numbers, i+1),
+               _partition_difference2(left[:], new_right, numbers, i+1))
 
 
-print partition_difference2([], [], [1,6,11,5], 0)
-
-
+print partition_difference([1,6,11,5])
