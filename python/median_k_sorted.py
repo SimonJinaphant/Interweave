@@ -11,10 +11,10 @@ def median_k_sorted(list_of_lists, total_elements):
     """
 
     """
-    This is similar to trying to merge all k arrays into one array and finding the median
-    We can find the median by observing the smallest n/2 elements (n is the total # of elements) as we try to "merge"
-    in the sublists.
+    This is similar to trying to merge all k arrays into one array and finding the median of that
 
+    We can find the median by observing the smallest n/2+k elements (n is the total # of elements) as we try to "merge"
+    in the sublists.
     """
     # Keep track of where each list's current pointer is at
     current_pointers = []
@@ -38,7 +38,7 @@ def median_k_sorted(list_of_lists, total_elements):
 
         heapq.heappush(min_heap, (list_of_lists[list_no][current_pointers[list_no]] ,list_no))
 
-    # Now we have atleast k elements in our heap, with the top one being the middle element
+    # Now we have atleast k elements in our heap, with the top one being the middle element if total_element is odd
     median_left, _li = heapq.heappop(min_heap)
 
     if total_elements % 2 == 0:
@@ -47,4 +47,5 @@ def median_k_sorted(list_of_lists, total_elements):
     else:
         return median_left
 
-print median_k_sorted([[1,2,3],[4,5,6],[7,8,9]], 9)
+
+print median_k_sorted([[1, 2, 3], [4, 5, 6], [7, 8, 9]], 9)
