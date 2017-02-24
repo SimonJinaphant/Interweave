@@ -1,4 +1,7 @@
-def top_k_frequency(data, k):
+import unittest
+
+
+def top_k_occurrence(data, k):
     """
     Given a non-empty array of integers, return the k most frequent elements.
 
@@ -6,7 +9,7 @@ def top_k_frequency(data, k):
     Given [1,1,1,2,2,3] and k = 2, return [1,2].
 
     :param data: Array of hashable items
-    :param k: The minimum occurrence
+    :param k: The minimum occurrence, an integer > 0
     :return: Array of elements that occurs at minimum k times
     """
 
@@ -32,4 +35,16 @@ def top_k_frequency(data, k):
 
     return result
 
-print top_k_frequency([1,1,1,2,2,3], 2)
+
+class TopKOccurrenceTest(unittest.TestCase):
+    def test_normals(self):
+        self.assertItemsEqual(top_k_occurrence([1,2,3,2,1,1], 2), [1,2])
+        self.assertItemsEqual(top_k_occurrence([1,2,3,2,1,1], 3), [1])
+
+    def test_edge(self):
+        self.assertItemsEqual(top_k_occurrence([1,2], 4), [])
+        self.assertItemsEqual(top_k_occurrence([], 1), [])
+
+
+if __name__ == "__main__":
+    unittest.main()
