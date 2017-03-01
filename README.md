@@ -53,3 +53,30 @@ See: [sums_of_three.py](python/sums_of_three.py)
 
 ### Sub-sequences
 ...
+
+# Strings
+### Sub-strings
+Bruteforce vs Boyer Moore vs Rabin Karp
+
+### Anagrams and Hashes
+
+### Occurrences and Bucket Sorting
+
+### Tries
+
+# Sorting and Partition
+
+# Binary Trees
+### Serialize and Deserialize
+
+# Graphs
+### Level Order Traversal
+
+# Bitwise
+### Multiply and Exponent
+### The importance of LSB
+- Finding min/max
+### Binary Sequences
+- Finding a missing number
+
+# Dynamic Programming
