@@ -8,14 +8,14 @@ Combining the theories and practices of modern day Computer Science
 ...
 
 ### Target Summation
-You need to find N distinct numbers from a single array, OR find one number each from N arrays, which sums up to a target value.
+You need to find N distinct numbers from a single array -OR find a single number from each of the N arrays- which sums up to a target value.
 
-The brute-force way is to use N loops to arbitrarily choose a number and check if those number combinations make the sum; but we can do better.
+The brute-force way is to use N loops to arbitrarily choose a number amd check if those selected number make the sum; but we can do better.
 
 When we've arbitrarily chosen N-1 numbers, we can calculate the last number we need to obtain the target sum; thus we can optimize by searching for that number.
 ```
-a + b + c + ... + z = target
-z = target - (a + b + c + ... + n-1)    (re-arrange sides)
+n_1 + n_2 + n_3 + ... + n_(n-1) = target
+z = target - (n_1 + n_2 + n_3 + n_(n-1) )    (re-arrange sides)
 ```
 
 - If the array(s) are sorted we can utilize binary search to find the last number we need to make our target sum.
@@ -30,7 +30,7 @@ for i in xrange(len(arr_a)):
 ```
 See: [sums_of_two.py](python/sums_of_two.py)
 
-- If the array(s) are unsorted we use a Set to remember the last number to find: every iteration we check if the current number is one of numbers we needed previously, otherwise we calculate what number we'll need to make the current numbers sum to the target.
+- If the array(s) are unsorted we use a Set to remember the last number to find: every iteration in the most nested loop we check if the current number is one of numbers we needed previously, otherwise we calculate what number we'll need to make the current numbers sum to the target.
 
 ```python
 for i in xrange(0, len(numbers)-2):
