@@ -71,6 +71,10 @@ When hashing consider the usage of prime numbers; the product of a prime number 
 
 ### Tries
 
+A Trie is a ordered tree for strings based on their prefixes.
+ - All descendants of a Trie node share the same prefix.
+ - Leaf nodes are always completed words, but intermediates can be either.
+
 # Sorting and Partition
 
 # Binary Trees
