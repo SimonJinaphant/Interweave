@@ -60,6 +60,13 @@ Bruteforce vs Boyer Moore vs Rabin Karp
 
 ### Anagrams and Hashes
 
+Anagrams are simply words with characters rearranged, therefore they:
+ - Have the *exact* same amount of characters
+ - Look the *exact* same when sorted by their characters
+ - Have the same hash value
+
+When hashing consider the usage of prime numbers; the product of a prime number with another number has a higher chance of being unique
+
 ### Occurrences and Bucket Sorting
 
 ### Tries
