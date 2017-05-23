@@ -17,6 +17,16 @@ def decompress_str(compressed):
     :param compressed: The compressed string with the format k[str] where str is repeated k times
     :return: The uncompressed string
     """
+
+    """
+    Consider analysing the problem from right to left as we do with string problems which require us to expand it.
+
+    We'll add the letters into a collection and then once we encounter a number we'll take all the letters accumulated
+    so far and multiply the it.
+
+    The [ bracket will be useless as there will always be a number to the left of it which denotes the need to start
+    expanding character's we accumulated so far; therefore the ] bracket will be used to signal the end of the expansion
+    """
     character_stack = []
     black_list = set([str(i) for i in xrange(10)])
 
