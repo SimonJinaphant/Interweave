@@ -33,23 +33,37 @@ def substring(text, pattern):
         '''
 
         for j, patternLetter in reversed(list(enumerate(pattern))):
+            # j represents how many characters are to the right of the current pattern
+
             if patternLetter != text[i+j]:
                 if text[i+j] not in skiptable:
                     '''
                     Since we mismatched on a character that's not in the pattern we can shift the entire pattern to the
-                    right until we passed the mismatched character since its impossible for any matches until we pass it.
+                    right until we passed the mismatched character since its impossible for any matches until we
+                    completely move pass it.
                     '''
                     skip = j+1
                 else:
                     '''
-                    Otherwise we'll skip between 1 and the length of the pattern
+                    Otherwise if the mismatched character in the text is actually a character in the pattern then we'll
+                    slide the pattern over a couple of spaces until they both are aligned with the same letter.
+
+                    ex:
+                    Text:           aneedleinahaystack
+                    Pattern:        needle
+
+                    On first check the text's `l` and the pattern's `e` mismatched but since `l` is also a character in
+                    the pattern, we'll slide the pattern over until the pattern's l is aligned with the text's l and
+                    restart the match checking again.
                     '''
                     skip = max(1, j - skiptable[text[i+j]])
                 break
 
         if skip == 0:
+            # No mismatched occurred; we've successfully found a substring!
             return i+j
 
+        # Update the starting position of the text to align with how many character's we've skipped in the pattern.
         i += skip
     
     return None
