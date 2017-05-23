@@ -56,7 +56,7 @@ See: [sums_of_three.py](python/sums_of_three.py)
 
 # Strings
 ### Sub-strings
-Bruteforce vs Boyer Moore vs Rabin Karp
+Bruteforce vs [Boyer Moore](python/boyer_moore.py) vs Rabin Karp
 
 ### Anagrams and Hashes
 
@@ -67,6 +67,8 @@ Anagrams are simply words with characters rearranged, therefore they:
 
 When hashing consider the usage of prime numbers; the product of a prime number with another number has a higher chance of being unique
 
+See: [anagramgroup.py](python/anagramgroup.py)
+
 ### Occurrences and Bucket Sorting
 
 ### Tries
@@ -74,6 +76,15 @@ When hashing consider the usage of prime numbers; the product of a prime number 
 A Trie is a ordered tree for strings based on their prefixes.
  - All descendants of a Trie node share the same prefix.
  - Leaf nodes are always completed words, but intermediates can be either.
+
+See: [autocomplete.py](python/autocomplete.py)
+
+### Parsing by Replacing
+
+Given some string, we need to modify it such that the result string has some characters replaced with another
+ - Consider working backwards (from right to left) to avoid having to shift the string every time we add a new character but there's still letters to the right of it.
+
+See: [decompress_str.py](python/decompress_str.py)
 
 # Sorting and Partition
 
