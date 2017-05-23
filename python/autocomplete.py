@@ -49,6 +49,11 @@ class TrieNode():
             self.children[child_key].depth_search(accumulated + child_key)
 
     def search(self, query):
+        """
+        Search the Trie for a certain string
+
+        :param query: The string to search for
+        """
         self._search(query, 0, "")
 
     def _search(self, query, q, accumulated):
@@ -57,13 +62,16 @@ class TrieNode():
             key = query[q]
 
             if key in self.children:
+                # We can continue our search down this Trie node.
                 accumulated += key
                 self.children[key]._search(query, q + 1, accumulated)
             else:
+                # We've reached a dead end; there's no possible strings with this prefix
                 print
                 "No match"
 
         else:
+            # The prefix is now the entire word; we've reached the end.
             if self.is_word:
                 print
                 "Match: ", accumulated
