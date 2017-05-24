@@ -18,7 +18,7 @@ def k_smallest_matrix(matrix, k):
     heapq.heapify(open_list)
     current_min = None
 
-    # Take the min element and possibly enqueue the element below it
+    # Take the min element and enqueue the element below it if possible; when k is 0 we have our k'th min element
     while k != 0:
         current_min, current_y, current_x = heapq.heappop(open_list)
 

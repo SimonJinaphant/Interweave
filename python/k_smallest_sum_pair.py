@@ -21,6 +21,15 @@ def k_smallest_sum_pair(nums1, nums2, k):
 
     :return: An array of sum pairs which are the smallest sums
     """
+
+    '''
+    Similar to the k-th smallest matrix; we'll use a min heap to hold a bunch of small elements and keep evicting the
+    smallest element out until we've reached our limit of k.
+
+    We'll arbitrarily take the first element of the first array and sum them up with all elements in the second array
+    Then we'll find the smallest sum and append it to our result, while taking the next element from the first array and
+    summing it with the same element in the second array.
+    '''
     lookup = {v: i for i, v in enumerate(nums1)}
     min_heap = []
 
