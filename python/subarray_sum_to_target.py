@@ -11,15 +11,23 @@ def subarray_sum_to_target(numbers, target):
 
     :return: The subarray whose element all sum to the target
     """
+
+    """
+    Create a sub=array define by lower and upper bounds starting at indices 0 and 1
+    Depending on the sub-array's sum compared to the target sum we'll expand the array by including the next number
+    or shrink the sub-array by excluding the leftmost number.
+    """
     start = 0
     end = 1
     current_sum = numbers[start]
 
     while end < len(numbers):
         if current_sum < target:
+            # The target is still larger than our sub-array's sum, expand the upper bound by one
             current_sum += numbers[end]
             end += 1
         elif current_sum > target:
+            # The target is smaller than our sub-array's sum, shrink the sub-array by removing the leftmost element
             current_sum -= numbers[start]
             start += 1
         else:
