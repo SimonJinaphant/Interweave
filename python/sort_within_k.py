@@ -29,11 +29,16 @@ def sort_within_k(numbers, k):
 
 
 def sort_within_k_optimized(numbers, k):
-    # Mapping for value to index, only needed for sorting array in place via swapping
-    # We can't easily put the index in the heap element as well since we'll need to update it
+    '''
+    We can optimize the above solution by reducing the amount of repeated comparisons.
+
+    We're always trying to find the smallest element in a certain sub-array, and each subsequent sub-array will contain
+    parts of the previous one. To avoid repeated comparisons we can utilize a min heap to search for the smallest
+    element and continue to sort the array by adding in the next number.
+    '''
     value_to_index = {}
 
-    # Construct a min_heap for the first k-1 elements and remember their indices
+    # Construct a min_heap using the first k-1 elements and record their original indices
     min_heap = []
     for i, element in enumerate(numbers[:k]):
         value_to_index[element] = i

@@ -13,8 +13,8 @@ def subarray_sum_to_target(numbers, target):
     """
 
     """
-    Create a sub=array define by lower and upper bounds starting at indices 0 and 1
-    Depending on the sub-array's sum compared to the target sum we'll expand the array by including the next number
+    Create a sub-array define by the lower and upper bounds starting at indices 0 and 1
+    Depending on the sub-array's sum compared to the target sum, we'll expand the array by including the next number
     or shrink the sub-array by excluding the leftmost number.
     """
     start = 0
