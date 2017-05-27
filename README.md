@@ -71,6 +71,12 @@ See: [anagramgroup.py](python/anagramgroup.py)
 
 ### Occurrences and Bucket Sorting
 
+When dealing with occurrences, we can use a dictionary or a fixed length set if the radix is known.
+
+When grouping similar occurrences together (in order to find top K occurences) consider dumping the contents of the above collections into buckets based on their occurrences.
+
+See: [top_k_occurrence](python/top_k_occurrence), [sort_by_occurrence](python/sort_by_occurrence)
+
 ### Tries
 
 A Trie is a ordered tree for strings based on their prefixes.

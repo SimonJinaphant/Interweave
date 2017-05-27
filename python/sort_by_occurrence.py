@@ -10,20 +10,20 @@ def sort_by_occurrence(message):
     """
 
     # Count all occurrences of a letter
-    occurences = {}
-    max_occurence = 1
+    occurrences = {}
+    max_occurrence = 1
     for letter in message:
-        if letter in occurences:
-            occurences[letter] += 1
-            max_occurence = max(max_occurence,occurences[letter])
+        if letter in occurrences:
+            occurrences[letter] += 1
+            max_occurrence = max(max_occurrence,occurrences[letter])
         else:
-            occurences[letter] = 1
+            occurrences[letter] = 1
 
     # Create buckets to hold letters of 1 occurrence to @max_occurrences occurrence
-    buckets = [[] for i in xrange(max_occurence+1)]
+    buckets = [[] for i in xrange(max_occurrence+1)]
 
     # Add the letters to their corresponding buckets
-    for k,v in occurences.iteritems():
+    for k,v in occurrences.iteritems():
         buckets[v].append(k*v)
 
     # Reduce the buckets into one in a reversed manner
