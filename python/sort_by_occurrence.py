@@ -37,7 +37,11 @@ def sort_by_occurrence(message):
 
     return "".join(result)
 
+
 class TestSortByOccurrence(unittest.TestCase):
     def test_normal(self):
-        self.assertEquals()
-print sort_by_occurrence("Aabb")
+        self.assertEquals(sort_by_occurrence("Aabb"), "bbAa")
+        self.assertEquals(sort_by_occurrence("aaabccccdd"), "ccccaaaddb")
+
+if __name__ == "__main__":
+    unittest.main()
