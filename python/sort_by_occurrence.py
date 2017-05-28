@@ -1,3 +1,6 @@
+import unittest
+
+
 def sort_by_occurrence(message):
     """
     Sort a given string by the number of letter occurences
@@ -34,5 +37,7 @@ def sort_by_occurrence(message):
 
     return "".join(result)
 
-
+class TestSortByOccurrence(unittest.TestCase):
+    def test_normal(self):
+        self.assertEquals()
 print sort_by_occurrence("Aabb")
