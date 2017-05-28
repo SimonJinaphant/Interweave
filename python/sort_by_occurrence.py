@@ -42,6 +42,8 @@ class TestSortByOccurrence(unittest.TestCase):
     def test_normal(self):
         self.assertEquals(sort_by_occurrence("Aabb"), "bbAa")
         self.assertEquals(sort_by_occurrence("aaabccccdd"), "ccccaaaddb")
+        self.assertEquals(sort_by_occurrence("AaabBBB"), "BBBaaAb")
+        self.assertEquals(sort_by_occurrence("zazaza"), "aaazzz")
 
 if __name__ == "__main__":
     unittest.main()
