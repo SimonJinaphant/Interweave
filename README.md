@@ -102,10 +102,9 @@ See: [decompress_str.py](python/decompress_str.py)
 
 # Bitwise
 ### Multiply and Exponent
-The left and right shift operator is the same as multiplying or dividing the numerical value by 2;
+- The left and right shift operator is the same as multiplying or dividing the numerical value by 2;
 this is helpful as it can express multiplication as sums of powers of 2:
-
-The expression `3 * 4` is the same as `3 * 2^2` which is the same as `3 * (1 << 2)`
+  - The expression `3 * 4` is the same as `3 * 2^2` which is the same as `3 * (1 << 2)`
 
 - When you want to check if a certain bit in a binary is a 0 or a 1 use the shift operator and the AND operator
 `(binary >> bit_position) & 1`
@@ -116,7 +115,9 @@ The expression `3 * 4` is the same as `3 * 2^2` which is the same as `3 * (1 << 
 - Toggling a certain bit can be done with the XOR operator
 `binary ^= (1 << bit_position)`
 
+- An alternative way of flipping a single bit is `1 ^ bit`
 
+- To obtain an n-length binary of all 1's we can do `(1 << (n+1)) - 1)`
 
 ### The importance of LSB
 - If a number is odd it has a 1 for its LSB
