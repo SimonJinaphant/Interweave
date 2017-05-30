@@ -99,6 +99,13 @@ See: [decompress_str.py](python/decompress_str.py)
 
 # Graphs
 ### Level Order Traversal
+Breadth first traversal doesn't explicitly indicate when we reach a new depth level in the binary tree; however we can fix this by keeping track of two counters: one for the current level, and another for the next level.
+- When we dequeue a node out of the queue we decrement the current level by 1.
+- When we enqueue a node into the queue we increment the next level counter by 1.
+- Once current level reaches 0 we know we've finished a traversing all nodes in a particular level.
+- Simply swap the counter values and do the same thing all over again to start traversing the next level.
+
+See [max_tree_row](python/max_tree_row.py)
 
 # Bitwise
 ### Multiply and Exponent
