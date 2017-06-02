@@ -56,7 +56,13 @@ See: [sums_of_three.py](python/sums_of_three.py)
 
 # Strings
 ### Sub-strings
-Bruteforce vs [Boyer Moore](python/boyer_moore.py) vs Rabin Karp
+Bruteforce vs [Boyer Moore](python/boyer_moore.py) vs [Rabin Karp](python/rabin_karp.py)
+
+- Boyer Moore:
+Smarter comparision by using a bad character rule to skip many unnecessary comparisons.
+
+- Rabin Karp:
+Utilize string hashing to match sub-strings; can be utilzed to compare multiple strings at a time.
 
 ### Anagrams and Hashes
 
