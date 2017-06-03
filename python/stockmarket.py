@@ -12,8 +12,8 @@ def stockmarket(stock_prices):
 
     Basecase: A one element stock price is both its min and max
 
-    Find the min/max pair of a given subarray, then take those min/max and compare them against each other to take the
-    min/max of those pairs.
+    Recursively split the array into two and find the min/max pair of a given sub-array, then take those min/max pairs
+    and compare them against the other sub-array to take the min/max of those pairs.
     """
     if len(stock_prices) == 1:
         return (stock_prices[0], stock_prices[0])
