@@ -143,3 +143,13 @@ See Finding min/max
 - Finding a missing number
 
 # Dynamic Programming
+
+### 0/1 Knapsack
+Consider a situation where you have a set of items, each with their own weight and profit value.
+You have a knapsack to store items in it, however your knapsack has a weight limit, so you want to maximize your profit value while staying under the capacity.
+
+We can see that weight is the limiting factor of this problem, we cannot take anymore item if we're over capacity.
+
+If you consider taking one item you're now solving for a subproblem of the same item set minus the item you took, with the new reduced knapsack capacity since you've taken the item.
+
+See: [knapsack](python/dynamic_programming/knapsack.py)
