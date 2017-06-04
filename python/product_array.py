@@ -45,6 +45,18 @@ def product_array_no_div(numbers):
     return results
 
 
+def product_array_simple(numbers):
+    left_side_products = [1] * (len(numbers) + 1)
+    right_side_products = [1] * (len(numbers) + 1)
+
+    for i, number in enumerate(numbers[:-1], start=1):
+        left_side_products[i] = left_side_products[i - 1] * number
+
+    for j, number in enumerate(reversed(numbers[1:]), start=1):
+        right_side_products[j] = right_side_products[j-1] * number
+
+    return [left_side_products[k] * right_side_products[len(numbers)-1-k] for k in xrange(len(numbers))]
+
 class TestProductArray(unittest.TestCase):
     def test_normal(self):
         self.assertEquals(product_array([2, 1, 3, 4, 1, 2]), [24, 48, 16, 12, 48, 24])
@@ -53,6 +65,10 @@ class TestProductArray(unittest.TestCase):
     def test_no_div_normal(self):
         self.assertEquals(product_array_no_div([2, 1, 3, 4, 1, 2]), [24, 48, 16, 12, 48, 24])
         self.assertEqual(product_array_no_div([10, 3, 5, 6, 2]), [180, 600, 360, 300, 900])
+
+    def test_simple(self):
+        self.assertEquals(product_array_simple([2, 1, 3, 4, 1, 2]), [24, 48, 16, 12, 48, 24])
+        self.assertEqual(product_array_simple([10, 3, 5, 6, 2]), [180, 600, 360, 300, 900])
 
 if __name__ == "__main__":
     unittest.main
