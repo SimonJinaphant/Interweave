@@ -26,3 +26,30 @@ def condense_meeting_time(meeting_time):
                 meeting_slots[i] = current_index
 
     return None
+
+
+def merge_meetings(time_slots):
+    """
+    Given a time slots of meetings, merge meetings which overlap to avoid scheduling more rooms.
+
+    :param time_slots: List of 2D Integer tuples in the format (start_time, end_time)
+    :return: List of 2D integer tuples
+    """
+    # Sort by their starting time
+    time_slots.sort()
+
+    time_stack = []
+    time_stack.append(time_slots[0])
+
+    for start_time, end_time in time_slots:
+
+        # This meeting overlaps!
+        if time_stack[-1][1] >= start_time:
+            prev_start, prev_end = time_stack.pop()
+            time_stack.append((min(prev_start, start_time), max(prev_end, end_time)))
+        else:
+            time_stack.append((start_time, end_time))
+
+    return time_stack
+
+print merge_meetings([(0,1), (3,5), (4,8), (10,12), (9,10)])
