@@ -1,3 +1,7 @@
+from __future__ import absolute_import
+import unittest
+
+
 def reverse_vowel(raw_string):
     """
     Given a string, reverse only the vowel characters.
@@ -33,7 +37,7 @@ def reverse_vowel(raw_string):
         while letters[tail] not in vowels and head < tail:
             tail -= 1
 
-        if head <= tail:
+        if head > tail:
             return "".join(letters)
 
         swap(head, tail)
@@ -41,3 +45,14 @@ def reverse_vowel(raw_string):
         tail -= 1
 
     return "".join(letters)
+
+
+class TestReverseVowels(unittest.TestCase):
+    def test_normals(self):
+        self.assertEquals(reverse_vowel("hello"), "holle")
+        self.assertEquals(reverse_vowel("helelo"), "holele")
+        self.assertEquals(reverse_vowel("bcdfgh"),"bcdfgh")
+gi
+
+if __name__ == "__main__":
+    unittest.main()
