@@ -21,12 +21,29 @@ def levenshtein(s, t):
     if n == 0:
         return m
 
+    '''
+    Create a m+1 by n+1 matrix, letting the m[0][0] denote the distance between 2 empty strings
+    In the entire 1st column, we compare one string against the sub-problem of an empty string
+    In the entire 2nd column, we compare that string against the sub-problem of a string containing the first letters of the other string
+    In the entire 3rd column..etc, we compare that string against the sub-problem of a string containing the first 2 letters of the other string
+    Similarly for the entire rows...
+
+    In the entire first column, since we're comparing against an empty string, the distance for each row in that column 
+    will be incremental from 0 to the length of that string. Same for the entire first row.
+    '''
     matrix = [[0 for j in xrange(n+1)] for i in xrange(m+1)]
     for i in xrange(0, m+1):
         matrix[i][0] = i
     for j in xrange(0, n+1):
         matrix[0][j] = j
 
+    '''
+    Now we compare the rest of the matrix
+    At each slot we consider 3 possible case:
+    1. If the current letter in column string is removed (Deletion), obtained from looking one row up
+    2. If the current letter in row string t is removed (Insertion, or deleting from the other string); obtained from looking one column behind
+    3. If the current letters in both are removed (Substitution), obtain from looking diagonally behind.
+    '''
     for i in xrange(1, m+1):
         s_i = s[i - 1]
         for j in xrange(1, n+1):
