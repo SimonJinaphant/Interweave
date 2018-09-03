@@ -3,7 +3,7 @@ import unittest
 
 def decompress_str(compressed):
     """
-    A string has been compressed finely such that repeated sequences are shortened by a number.
+    A string has been compressed such that repeated sequences are shortened by a number.
 
     Example:
         aaabcbc -> 3[a]2[bc]
@@ -28,22 +28,36 @@ def decompress_str(compressed):
     expanding character's we accumulated so far; therefore the ] bracket will be used to signal the end of the expansion
     """
     character_stack = []
-    black_list = set([str(i) for i in xrange(10)])
+    i = len(compressed) - 1
 
-    for character in reversed(compressed):
+    while i >= 0:
+        skip = 1
+        character = compressed[i]
 
         if character == "[":
+            i -= skip
             continue
 
-        if character not in black_list:
+        if not character.isdigit():
             character_stack.append(character)
         else:
+            # Look ahead to see if the next character is apart of this numerical value
+            j = i - 1 
+            extra_digits = [compressed[i]]
+            while compressed[j].isdigit():
+                extra_digits.append(compressed[j])
+                j -= 1
+            repeat = int("".join(reversed(extra_digits)))
+            skip = len(extra_digits)
+
+            # Form the current substring and repeat it by the numerical value
             sub_string = []
             while character_stack[-1] != "]":
                 sub_string.append(character_stack.pop())
             character_stack.pop()
 
-            character_stack.append(int(character) * "".join(sub_string))
+            character_stack.append(repeat * "".join(sub_string))
+        i -= skip
 
     # Reverse the collection to form the proper string since we've been adding it backwards.
     final_str = []
@@ -59,7 +73,16 @@ class TestDecompress(unittest.TestCase):
         self.assertEqual(decompress_str("3[a2[c]]"), "accaccacc")
         self.assertEqual(decompress_str("3[a]2[bc]"), "aaabcbc")
         self.assertEqual(decompress_str("2[abc]3[cd]ef"), "abcabccdcdcdef")
+    
+    def test_nested(self):
+        self.assertEqual(decompress_str("2[3[a]]"), "aaaaaa")
+        self.assertEqual(decompress_str("2[2[b]3[a]]"), "bbaaabbaaa")
+        self.assertEqual(decompress_str("2[2[b]3[a]cd]"), "bbaaacdbbaaacd")
+        self.assertEqual(decompress_str("3[c4[a2[b]]]"), "cabbabbabbabbcabbabbabbabbcabbabbabbabb")
 
+    def test_multiple_digits(self):
+        self.assertEqual(decompress_str("10[a]"), 10*"a")
+        self.assertEqual(decompress_str("123[a]"), 123*"a")
 
 if __name__ == "__main__":
-    unittest.main();
+    unittest.main()
